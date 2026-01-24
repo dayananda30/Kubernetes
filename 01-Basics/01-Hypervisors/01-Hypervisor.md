@@ -14,6 +14,7 @@ A hypervisor is software that creates and runs virtual machines (VMs). Each VM a
   - [CPU Virtualization](#cpu-virtualization)
   - [Memory Virtualization](#memory-virtualization)
 - [Example: Virtual Disk Abstraction](#example-virtual-disk-abstraction)
+- [Hypervisor Types Comparison](#hypervisor-types-comparison)
 - [Summary](#summary)
 
 ## Overview
@@ -25,14 +26,18 @@ A hypervisor is a piece of software that creates and runs virtual machines (VMs)
 ### Type 1 (Bare-metal)
 
 - Run directly on the host’s hardware.
-- Examples: VMware ESXi, Microsoft Hyper-V, Xen, KVM.
+- Examples: Nutanix AHV, VMware ESXi, Microsoft Hyper-V, Citrix Hypervisor.
 - Used in data centers and enterprise environments.
+
+Type 1 hypervisors are installed directly on the physical server (“bare metal”). Direct access to the server’s resources makes them highly efficient. This design also improves security by limiting the attack surface. Type 1 hypervisors are the most common choice in enterprise IT due to strong security, scalability, stability, and performance.
 
 ### Type 2 (Hosted)
 
 - Run on top of a host operating system.
-- Examples: VMware Workstation, Oracle VirtualBox.
+- Examples: VirtualBox, VMware Workstation, Parallels Desktop.
 - Used for desktop virtualization and development/testing.
+
+Type 2 hypervisors run as applications on a host operating system. Because the host OS sits between the hardware and the hypervisor, they have higher latency and greater risk exposure than Type 1. They are easy to install and fit use cases like individual PC users running multiple operating systems, where performance and security are not primary concerns.
 
 ## How Hypervisors Work
 
@@ -68,6 +73,14 @@ Suppose a VM thinks it has a 100GB hard drive. In reality:
 - Reads/writes from the VM are redirected to a file (like `vm1.vmdk`) or a logical volume on the host.
 - The VM’s OS is unaware that it’s not talking to a real hard drive.
 
+## Hypervisor Types Comparison
+| Category | Type 1 (Bare Metal) | Type 2 (Hosted) |
+|---|---|---|
+| Description | Installed directly on the physical server without an underlying OS. | Runs as an application on top of a host OS. |
+| Advantages | High efficiency; strong security; scalability; stability; performance. | Easy to install; suitable for individuals running multiple OSes. |
+| Disadvantages | Requires dedicated hardware; more complex to set up. | Higher latency; more vulnerable to security risks; not ideal for servers. |
+| Common Examples | Nutanix AHV; VMware ESXi; Microsoft Hyper-V; Citrix Hypervisor. | VirtualBox; VMware Workstation; Parallels Desktop. |
+
 ## Summary
 
 | Component | Hypervisor Abstraction Method |
@@ -77,4 +90,6 @@ Suppose a VM thinks it has a 100GB hard drive. In reality:
 | Disk | Virtual disk mapped to file or logical volume |
 | Network | Virtual NIC mapped to physical NIC or bridge |
 | Devices | Emulated, paravirtualized, or pass-through |
+
+
 
