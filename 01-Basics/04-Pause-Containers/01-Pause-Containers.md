@@ -21,5 +21,5 @@ Key points
 - Pod termination happens cleanly only after all containers (including pause) exit.
 
 
-## External diagram (KodeKloud)
+## Diagramatic Representation
 ![Pause containers diagram (KodeKloud)](https://kodekloud.com/community/uploads/db1265/original/3X/3/6/3695280a298041722f7f4275f77db5c9973b211d.jpeg)
